@@ -10,11 +10,6 @@ from dotenv import load_dotenv
 
 import streamlit as st
 import google.generativeai as genai
-try:
-    from streamlit_clipboard import clipboard
-    COPY_COMPONENT_AVAILABLE = True
-except ImportError:
-    COPY_COMPONENT_AVAILABLE = False
 
 # Load environment variables from .env in the script directory, regardless of working directory
 from pathlib import Path
