@@ -1,0 +1,6 @@
+.env
+smart_irrigation_bot/.env
+__pycache__/
+*.pyc
+.venv/
+.vscode/
