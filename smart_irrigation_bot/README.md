@@ -1,27 +1,51 @@
 # Smart Irrigation Advice Chatbot
 
-This project provides a Python chatbot to help beginner farmers decide whether to irrigate their crops using real-time weather data and AI-powered recommendations.
+Smart, beginner-friendly irrigation advice powered by real-time weather data and an AI assistant. The app helps users decide whether to water today, explains the reasoning, recommends frequency, and highlights precautions.
 
 ## Features
-- Asks for crop type and city
-- Retrieves weather data from OpenWeather API
-- Uses Gemini (Google Generative AI) for irrigation advice (free tier)
-- Beginner-friendly, structured output
-- Secure API key management via environment variables
-- Error handling and clear documentation
+- Crop and city inputs
+- Live weather lookup
+- AI-generated, structured advice
+- Clear, card-based UI
+- Download advice as a .txt file
+- Input validation and error handling
 
-## Setup Instructions
-1. Copy `.env.example` to `.env` and add your API keys.
-   - Set `OPENWEATHER_API_KEY` to your OpenWeather key.
-   - Set `GEMINI_API_KEY` to your Google Generative AI key (or leave blank to use the default provided in code).
-2. Install dependencies:
+## Requirements
+- Python 3.10+ (tested on 3.12)
+- pip
+
+## Setup
+1. Copy `.env.example` to `.env`.
+2. Add your API keys in `.env`:
+   - `OPENWEATHER_API_KEY`
+   - `GEMINI_API_KEY`
+3. Install dependencies:
+   ```
    pip install -r requirements.txt
-3. Run the chatbot with Streamlit:
+   ```
+4. Run the app:
+   ```
    streamlit run main.py
+   ```
+
+## Usage
+1. Enter crop type and city.
+2. Click the submit button.
+3. Review the advice card and download the advice if needed.
+
+## Project Structure
+```
+smart_irrigation_bot/
+├── main.py
+├── requirements.txt
+├── README.md
+├── .env.example
+└── .vscode/
+```
 
 ## Security
-- API keys are managed via environment variables in a `.env` file (never commit your real `.env` file).
-- Gemini (Google Generative AI) is used by default for free LLM access.
+- Keep `.env` private.
+- Rotate keys if they are ever exposed.
 
 ## License
 MIT License

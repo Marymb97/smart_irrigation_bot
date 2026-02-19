@@ -22,8 +22,9 @@ dotenv_path = Path(__file__).parent / ".env"
 import dotenv
 dotenv.load_dotenv(dotenv_path=dotenv_path, override=True)
 OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY")
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY") or "AIzaSyCUk3Wnwp5qGIeih_3ysdt1jKb-Yg6MQaQ"
-genai.configure(api_key=GEMINI_API_KEY)
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+if GEMINI_API_KEY:
+    genai.configure(api_key=GEMINI_API_KEY)
 
 
 def get_weather(city):
@@ -89,12 +90,15 @@ def get_irrigation_advice(crop, city, weather):
     except Exception as e:
         import traceback
         import streamlit as st
-        st.error(f"[Gemini Exception] {e}\n{traceback.format_exc()}")
-        return f"[Gemini Exception] {e}"
+        st.error(f"[AI Exception] {e}\n{traceback.format_exc()}")
+        return f"[AI Exception] {e}"
 
 
 def main():
     st.set_page_config(page_title="Smart Irrigation Advice Chatbot", page_icon="💧")
+    if not GEMINI_API_KEY:
+        st.error("AI API key is missing or revoked. Add a new key to your .env file and restart the app.")
+        st.stop()
     # App Title and Subtitle
     st.markdown(
         """
